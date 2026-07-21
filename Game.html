@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🍒Fruit Slicer Game</title>
+  <link rel="stylesheet" href="Game.css">
+</head>
+<body>
+<div id="container">
+  <header id="topBar">
+    <div id="titleCard">
+      <span class="titleText">LEGENDARY</span>
+      <span class="subtitle">Fruit Slice</span>
+    </div>
+    <div class="headerRow">
+      <div id="scoreCard" class="status-card">
+        <span class="status-label">SCORE</span>
+        <span id="scoreValue">0</span>
+      </div>
+      <div id="statusRight">
+        <div id="lifeCard" class="status-card">
+          <span class="status-label">LIVES</span>
+          <div id="trialsleft" class="lifeRow"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="fruitcontainer">
+    <div class="corner top-left"><span class="cornerFruit">🍊</span></div>
+    <div class="corner top-right"><span class="cornerFruit">🍋</span></div>
+    <div class="corner bottom-left"><span class="cornerFruit">🍉</span></div>
+    <div class="corner bottom-right"><span class="cornerFruit">🍍</span></div>
+    <div id="front">
+      <div class="frontText">START GAME WITH BUTTON</div>
+      <div class="frontDeveloper">SherazAhmadDeveloper.com</div>
+      <div class="frontEmoji">🍊</div>
+    </div>
+    <div id="fruit1" class="fruit"></div>
+    <section id="resultPanel" class="status-card">
+      <div id="gameOver"></div>
+      <div class="resultDivider"></div>
+      <div class="resultLeaderboard">
+        <h3 class="panelTitle">Top 5 Scores</h3>
+        <table id="scoreHistoryTable">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Score</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footerBar">
+    <button id="startReset" type="button">Start Game</button>
+  </footer>
+</div>
+<script src="Game.js"></script>
+<script>
+(function(){
+  try{
+    const badge=document.createElement('div');
+    badge.id='respBadge';
+    Object.assign(badge.style,{
+      position:'fixed',left:'8px',bottom:'8px',zIndex:9999,background:'rgba(0,0,0,0.6)',color:'#fff',padding:'6px 8px',borderRadius:'6px',fontSize:'13px',fontFamily:'system-ui,Segoe UI,Arial',opacity:0.92
+    });
+    document.body.appendChild(badge);
+    function update(){
+      const w=window.innerWidth;
+      const q900=window.matchMedia('(max-width:900px)').matches;
+      const q780=window.matchMedia('(max-width:780px)').matches;
+      const q520=window.matchMedia('(max-width:520px)').matches;
+      const q420=window.matchMedia('(max-width:420px)').matches;
+      badge.textContent = 'w:' + w + 'px  ' + (q900?'<900 ':'') + (q780?'<780 ':'') + (q520?'<520 ':'') + (q420?'<420':'');
+      console.log('RESP debug', {width: w, q900, q780, q520, q420});
+    }
+    update();
+    window.addEventListener('resize', update);
+  } catch (e) { console.error('Resp badge error', e); }
+})();
+</script>
+</body>
+</html>
